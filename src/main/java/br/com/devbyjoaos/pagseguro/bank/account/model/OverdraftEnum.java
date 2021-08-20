@@ -1,16 +1,39 @@
 package br.com.devbyjoaos.pagseguro.bank.account.model;
 
-public enum OverdraftEnum {
 
-    HAVE(1, "Liberado"),
-    DONT_HAVE(0, "Não liberado");
+import br.com.devbyjoaos.pagseguro.bank.account.utils.EnumWithId;
+import br.com.devbyjoaos.pagseguro.bank.account.utils.EnumWithIdConverter;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-    private int id;
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public enum OverdraftEnum implements EnumWithId {
+
+    DONT_HAVE(0, "Não liberado"),
+    HAVE(1, "Liberado");
+
+    private Integer id;
     private String name;
 
-    OverdraftEnum(int id, String name){
-        this.id = id;
-        this.name = name;
+    public static OverdraftEnum fromId(Integer id) {
+        if (id == null)
+            return null;
+        for (OverdraftEnum enumValue : OverdraftEnum.values()) {
+            if (enumValue.id == (id)) {
+                return enumValue;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static class OverdraftEnumConverter extends EnumWithIdConverter<OverdraftEnum> {
+
+        protected  OverdraftEnumConverter(){
+            super(OverdraftEnum.values());
+        }
+
     }
 
 

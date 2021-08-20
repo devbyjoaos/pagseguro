@@ -2,12 +2,12 @@ package br.com.devbyjoaos.pagseguro.bank.account.service;
 
 import br.com.devbyjoaos.pagseguro.bank.account.model.BankAccount;
 import br.com.devbyjoaos.pagseguro.bank.account.model.BankAccountFilter;
+import br.com.devbyjoaos.pagseguro.bank.account.repository.BankAccountEspecifications;
 import br.com.devbyjoaos.pagseguro.bank.account.repository.BankAccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,8 +45,18 @@ public class BankAccountService {
         this.bankAccountRepository.deleteById(id);
     }
 
-    public List<BankAccount> findBankAccountsWithFilter(BankAccountFilter filter){
-        //fazer HQL
-        return Arrays.asList(new BankAccount());
+    public List<BankAccount> findBankAccountsWithFilter(BankAccountFilter filter) {
+        return this.bankAccountRepository.findAll(BankAccountEspecifications.equalAgency(filter.getAgency())
+                .and(BankAccountEspecifications.equalOverdraft(filter.getOverdraft()))
+                .and(BankAccountEspecifications.likeName(filter.getName())));
+    }
+
+    public BankAccount findbankAccountByAccountNumber(Long accountNumber) {
+        BankAccount bankAccount =  this.bankAccountRepository.findByAccountNumber(accountNumber).orElse(null);
+
+        if(Objects.isNull(bankAccount))
+            throw new IllegalArgumentException("Não foi possível encontrar uma conta com esse número");
+
+        return bankAccount;
     }
 }

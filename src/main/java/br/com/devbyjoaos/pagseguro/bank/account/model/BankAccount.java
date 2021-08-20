@@ -18,6 +18,7 @@ public class BankAccount {
 
     @Id
     @GeneratedValue(generator = "sq_bank_account", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "sq_bank_account", allocationSize = 1)
     @Column(name = "id_bank_account", nullable = false)
     private Long id;
 
@@ -30,8 +31,9 @@ public class BankAccount {
     @Column(name = "nr_agency", nullable = false)
     private Long agency;
 
+    @Convert(converter = OverdraftEnum.OverdraftEnumConverter.class)
     @Column(name = "nr_overdraft", nullable = false)
-    private Integer overdraft;
+    private OverdraftEnum overdraft;
 
     @Column(name = "db_balance", nullable = false)
     private BigDecimal balance;

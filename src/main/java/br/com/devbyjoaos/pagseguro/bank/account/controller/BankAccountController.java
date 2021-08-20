@@ -55,4 +55,10 @@ public class BankAccountController {
 
         return accountsList.stream().map(BanckAccountMapper::entityToDto).collect(Collectors.toList());
     }
+
+    @GetMapping("/numero/{accountNumber}")
+    public DetailAccountDto getBankAccountByAccountNumber(@PathVariable Long accountNumber){
+        BankAccount bankAccount = bankAccountService.findbankAccountByAccountNumber(accountNumber);
+        return BanckAccountMapper.bankAccountToDetailDto(bankAccount);
+    }
 }

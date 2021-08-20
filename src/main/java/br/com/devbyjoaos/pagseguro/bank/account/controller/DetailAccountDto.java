@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankAccountFilterDto {
-
+public class DetailAccountDto {
     private String name;
-    private Long agency;
-    private Integer overdraft;
-
+    private String agencyAndAccount;
+    private String balance;
+    private String overdraftSituation;
+    private String overdraftValue;
 }

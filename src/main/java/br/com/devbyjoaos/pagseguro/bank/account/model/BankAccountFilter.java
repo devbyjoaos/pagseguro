@@ -13,6 +13,6 @@ public class BankAccountFilter {
 
     private String name;
     private Long agency;
-    private Integer overDraft;
+    private OverdraftEnum overdraft;
 
 }

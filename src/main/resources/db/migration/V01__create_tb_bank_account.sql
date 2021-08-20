@@ -10,5 +10,5 @@ create table tb_bank_account_baac (
                              db_overdraft NUMERIC(13,2),
                              db_tax NUMERIC(3,2),
                              CONSTRAINT  tb_bank_account_pk PRIMARY KEY (id_bank_account),
-                             CONSTRAINT tb_bank_Account_uk UNIQUE(nr_account_number, nr_agency);
+                             CONSTRAINT tb_bank_Account_uk UNIQUE(nr_account_number, nr_agency)
 );
