@@ -53,10 +53,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.rometools</groupId>
-            <artifactId>rome</artifactId>
-            <version>${rome.version}</version>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -74,6 +76,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>pagseguro</finalName>
     </build>
 
 </project>
