@@ -5,7 +5,7 @@ import br.com.devbyjoaos.pagseguro.bank.account.model.OverdraftEnum;
 import javax.persistence.AttributeConverter;
 import java.util.Objects;
 
-public abstract class EnumWithIdConverter <E extends EnumWithId> implements AttributeConverter<E, Integer> {
+public abstract class EnumWithIdConverter <E extends OverdraftEnum> implements AttributeConverter<E, Integer> {
 
     private E[] values;
 

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 import static java.util.Objects.isNull;
 
-public abstract class BanckAccountMapper {
+public abstract class BankAccountMapper {
 
     public static BankAccountDto entityToDto(BankAccount bankAccount){
         if(isNull(bankAccount))

@@ -22,25 +22,25 @@ public class BankAccountController {
     @PostMapping
     public BankAccountDto createNewBankAccount(@RequestBody BankAccount bankAccount){
         BankAccount bankAccountCreated = bankAccountService.createBankAccount(bankAccount);
-        return BanckAccountMapper.entityToDto(bankAccountCreated);
+        return BankAccountMapper.entityToDto(bankAccountCreated);
     }
 
     @GetMapping
     public List<BankAccountDto> getBankAccounts(){
         List<BankAccount> bankAccountList = bankAccountService.findAllAccounts();
-        return bankAccountList.stream().map(BanckAccountMapper::entityToDto).collect(Collectors.toList());
+        return bankAccountList.stream().map(BankAccountMapper::entityToDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public BankAccountDto getBankAccountById(@PathVariable Long id){
         BankAccount bankAccount = bankAccountService.findbankAccountById(id);
-        return BanckAccountMapper.entityToDto(bankAccount);
+        return BankAccountMapper.entityToDto(bankAccount);
     }
 
     @PutMapping
     public BankAccountDto updateBankAccount(@RequestBody BankAccount bankAccount){
         BankAccount bankAccountUpdated = bankAccountService.updateBankAccount(bankAccount);
-        return BanckAccountMapper.entityToDto(bankAccount);
+        return BankAccountMapper.entityToDto(bankAccount);
     }
 
     @DeleteMapping("/{id}")
@@ -51,14 +51,14 @@ public class BankAccountController {
     @PostMapping("/filtrar")
     public List<BankAccountDto> findBankAccountsByFilter(@RequestBody BankAccountFilterDto filterDto){
         List<BankAccount> accountsList = bankAccountService.findBankAccountsWithFilter(
-                                                BanckAccountMapper.bankAccountFilterDtoToEntity(filterDto));
+                                                BankAccountMapper.bankAccountFilterDtoToEntity(filterDto));
 
-        return accountsList.stream().map(BanckAccountMapper::entityToDto).collect(Collectors.toList());
+        return accountsList.stream().map(BankAccountMapper::entityToDto).collect(Collectors.toList());
     }
 
     @GetMapping("/numero/{accountNumber}")
     public DetailAccountDto getBankAccountByAccountNumber(@PathVariable Long accountNumber){
         BankAccount bankAccount = bankAccountService.findbankAccountByAccountNumber(accountNumber);
-        return BanckAccountMapper.bankAccountToDetailDto(bankAccount);
+        return BankAccountMapper.bankAccountToDetailDto(bankAccount);
     }
 }
